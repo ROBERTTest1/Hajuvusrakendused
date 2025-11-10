@@ -13,5 +13,13 @@
     "cros": "^1.1.0",
     "express": "^5.1.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ROBERTTest1/Hajuvusrakendused.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ROBERTTest1/Hajuvusrakendused/issues"
+  },
+  "homepage": "https://github.com/ROBERTTest1/Hajuvusrakendused#readme",
   "description": ""
 }
