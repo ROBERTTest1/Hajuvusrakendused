@@ -18,6 +18,7 @@ app.get('/thingamabobs/:id', (req, res) => {
         {
             return res.status(404).send({error:"Object not found. Check your thingamabobs id"})
         }
+        res.send(thingamabobs[req.params.id -1]);
 })
 
 app.post('/thingamabobs', (req, res) => {
@@ -36,7 +37,7 @@ app.post('/thingamabobs', (req, res) => {
     res.status(201).location('localhost:8080/thingamabobs/'+(thingamabobs.length-1)).send(newThingy)
 })
 
-app.delete('/thinamabobs/:id', (req, res) => {
+app.delete('/thingamabobs/:id', (req, res) => {
     if (typeof thingamabobs[req.params.id -1] === 'undefined') 
         {
             return res.status(404).send({error:"Object not found. Check your thingamabobs id"})
@@ -44,6 +45,23 @@ app.delete('/thinamabobs/:id', (req, res) => {
     thingamabobs.splice(req.params.id -1,1)
     res.status(204).send({error: "No content"})
 })
+
+app.put('/thingamabobs/:id', (req, res) => { 
+    if (!req.body.name || !req.body.price) {
+        return res.status(400).send({ error: "One or multiple parameters missing" });
+    }
+    
+    const id = parseInt(req.params.id);
+
+    const index = thingamabobs.findIndex(t => t.id === id);
+    if (index === -1) {
+        return res.status(404).send({ error: "Thingamabob not found" });
+    }
+
+    thingamabobs[index].name = req.body.name;
+    thingamabobs[index].price = req.body.price;
+    res.status(200).send(thingamabobs[index]);
+}); 
 
 app.listen(8080, () => {
     console.log(`API running at: http://localhost:8080`)
