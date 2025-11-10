@@ -11,6 +11,7 @@ const thingamabobs = [
     {id: 3, name: "sapakas", price: 2000},
 ]
 
+
 app.get('/thingamabobs', (req, res) => {res.send(thingamabobs)})
 
 app.get('/thingamabobs/:id', (req, res) => {
@@ -121,6 +122,24 @@ app.put('/people/:id', (req, res) => {
     res.status(200).send(people[index]);
 }); 
 
+
+const displayCars = [{
+    Car:{
+        carBrand:"BMW",
+        color:"violet",
+        "Tinted windows": true
+    }
+}]
+
+app.getElementById("app").innerHTML =
+`
+<div id="json">
+    <h1> Car properties </h1>
+    <p>Brand of car: ${displayCars[0].Car.carBrand}</p>
+    <p>Brand of car: ${displayCars[0].Car.color}</p>
+    <p>Brand of car: ${displayCars[0].Car["Tinted windows"]}</p>
+</div>    
+`
 
 app.listen(8080, () => {
     console.log(`API running at: http://localhost:8080`)
